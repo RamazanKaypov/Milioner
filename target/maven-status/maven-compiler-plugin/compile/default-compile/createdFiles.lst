@@ -1,0 +1,10 @@
+com\example\milioner\repository\LevelRepository.class
+com\example\milioner\Dto.class
+com\example\milioner\MilionerApplication.class
+com\example\milioner\entity\Answers.class
+com\example\milioner\entity\Levels.class
+com\example\milioner\sendQuestions.class
+com\example\milioner\controller.class
+com\example\milioner\repository\QuestinsRepository.class
+com\example\milioner\entity\Questions.class
+com\example\milioner\repository\AnswersRepository.class
