@@ -30,7 +30,7 @@ public class controller {
     @PostMapping
     public ResponseEntity<String> addQuestions(@RequestBody Dto dto){
         Levels levels=levelRepository.getLevelsByLevel(dto.getLevel());
-        Questions questions=new Questions(null,dto.getQuestions(),dto.getVariants(),levels);
+        Questions questions=new Questions((dto.getId()==null)?null:dto.getId(),dto.getQuestions(),dto.getVariants(),levels);
         questinsRepository.save(questions);
         Answers answers=new Answers(null,dto.getAnswer(),questions);
         answersRepository.save(answers);
@@ -59,5 +59,18 @@ public class controller {
         List<String> variants = questionsById.getVariants();
         return (variants.get(answers.getAnswer()).equals(answer));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteByID(@PathVariable Integer id){
+      if (questinsRepository.findById(id).isEmpty()){
+          return ResponseEntity.ok("Questions not found!");
+      } else {
+          questinsRepository.deleteById(id);
+          Answers answers=answersRepository.getAnswersByQuestionId(questinsRepository.getQuestionsById(id));
+          answersRepository.deleteById(answers.getId());
+          return ResponseEntity.ok("Questions has successful deleted!");
+      }
+    }
+
 
 }

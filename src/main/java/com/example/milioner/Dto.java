@@ -12,6 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Dto {
 
+    private Integer id;
+
     private String questions;
 
     private List<String> variants;
